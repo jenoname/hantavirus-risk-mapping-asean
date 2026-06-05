@@ -1,6 +1,6 @@
 # Hantavirus Risk Mapping Project
 
-This repository implements the project brief from `Tahap Pemaparan Project_Kelompok 1.pdf` for a May 2025-May 2026 analysis window, using the provided `data raw light.zip` dataset.
+This repository implements the project ML for a May 2025-May 2026 analysis window.
 
 ## Scope
 
