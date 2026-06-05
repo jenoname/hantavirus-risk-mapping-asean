@@ -1,0 +1,15 @@
+{
+  "date_range": {
+    "start": "2025-05-01",
+    "end": "2026-05-31"
+  },
+  "datasets": {
+    "ERA5": "monthly temperature, precipitation, dewpoint, humidity",
+    "CHIRPS": "daily precipitation GeoTIFF sampled/aggregated to monthly",
+    "MODIS_MOD11A2": "8-day LST HDF tiles converted from DN to Celsius",
+    "SRTM": "30 m elevation and derived slope",
+    "ESA_WorldCover": "10 m land-cover fractions per grid cell"
+  },
+  "raw_light_zip": "D:\\ML Project\\data raw light.zip",
+  "note": "The new raw_light dataset zip is inventoried in 03_prepare_raw_light.py. Heavy NetCDF/HDF raster parsing is optional and requires xarray/netCDF4/h5py/pyhdf/rasterio."
+}

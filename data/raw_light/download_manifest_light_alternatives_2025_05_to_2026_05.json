@@ -1,0 +1,56 @@
+{
+  "created_at": "2026-05-18T15:47:54Z",
+  "date_range": {
+    "start": "2025-05-01",
+    "end": "2026-05-31"
+  },
+  "region": {
+    "name": "Asia",
+    "area_nwse": [
+      82.0,
+      25.0,
+      -11.0,
+      180.0
+    ]
+  },
+  "downloads": {
+    "era5_monthly": [
+      {
+        "status": "missing_credentials",
+        "required_env": [
+          "CDSAPI_URL",
+          "CDSAPI_KEY"
+        ]
+      }
+    ],
+    "imerg_monthly": [
+      {
+        "status": "earthaccess_login_failed",
+        "short_name": "GPM_3IMERGM",
+        "error": "Either the environment variables EARTHDATA_USERNAME and EARTHDATA_PASSWORD must both be set, or EARTHDATA_TOKEN must be set for the 'environment' login strategy."
+      }
+    ],
+    "mod11c3_lst": [
+      {
+        "status": "earthaccess_login_failed",
+        "short_name": "MOD11C3",
+        "error": "Either the environment variables EARTHDATA_USERNAME and EARTHDATA_PASSWORD must both be set, or EARTHDATA_TOKEN must be set for the 'environment' login strategy."
+      }
+    ],
+    "mcd12c1_landcover": [
+      {
+        "status": "earthaccess_login_failed",
+        "short_name": "MCD12C1",
+        "error": "Either the environment variables EARTHDATA_USERNAME and EARTHDATA_PASSWORD must both be set, or EARTHDATA_TOKEN must be set for the 'environment' login strategy."
+      }
+    ],
+    "gmted2010": [
+      {
+        "status": "downloaded",
+        "url": "https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/topo/downloads/GMTED/Grid_ZipFiles/mn30_grd.zip",
+        "path": "C:\\Users\\ASUS\\Documents\\Codex\\2026-05-18\\files-mentioned-by-the-user-scripts\\work\\data\\raw_light\\gmted2010\\mn30_grd.zip",
+        "bytes": 277229566
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "source_zip": "C:\\Users\\LOQ\\Documents\\New project\\data raw light.zip",
+  "entry_count": 18,
+  "date_range": {
+    "start": "2025-05-01",
+    "end": "2026-05-31"
+  },
+  "region": {
+    "name": "Asia",
+    "area_nwse": [
+      82.0,
+      25.0,
+      -11.0,
+      180.0
+    ]
+  },
+  "available": {
+    "era5_monthly": 1,
+    "mod11c3_lst_months": 12,
+    "mcd12c1_landcover": 1,
+    "gmted2010": 1
+  },
+  "substitutions": {
+    "CHIRPS_or_IMERG": "Unavailable/blocked; ERA5 total precipitation is used as rainfall feature.",
+    "MODIS_MOD11A2": "Replaced by monthly MOD11C3 CMG LST.",
+    "SRTM": "Replaced by GMTED2010 mean elevation.",
+    "ESA_WorldCover": "Replaced by MCD12C1 2024 land cover because 2025 product is not published."
+  }
+}

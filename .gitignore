@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+models/model_cnn_resnet50.keras
+
+data/raw/chirps/
+data/raw_light/gmted2010/
+
+*.zip
+*.gz
+
+.DS_Store
+Thumbs.db
