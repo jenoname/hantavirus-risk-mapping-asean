@@ -1,0 +1,30 @@
+set -e  # stop kalau ada error
+
+GRIDS=(25 50 75)
+
+for GRID in "${GRIDS[@]}"; do
+    echo "  RUNNING PIPELINE WITH GRID = ${GRID} km"
+
+    export GRID_RESOLUTION_KM=$GRID
+
+    # jalankan full pipeline
+    python scripts/run_pipeline.py
+
+    # simpan hasil ke folder terpisah agar tidak tertimpa run berikutnya
+    OUT_DIR="outputs_${GRID}km"
+    PROC_DIR="data_processed_${GRID}km"
+
+    rm -rf "$OUT_DIR" "$PROC_DIR"
+    cp -r outputs "$OUT_DIR"
+    cp -r data/processed "$PROC_DIR"
+    cp -r models "models_${GRID}km" 2>/dev/null || true
+
+    echo ">> Hasil grid ${GRID}km disimpan di: $OUT_DIR, $PROC_DIR"
+    echo ""
+done
+
+echo "  SEMUA EKSPERIMEN SELESAI"
+echo "Bandingkan isi:"
+for GRID in "${GRIDS[@]}"; do
+    echo "  - outputs_${GRID}km/evaluation_metrics.json"
+done
