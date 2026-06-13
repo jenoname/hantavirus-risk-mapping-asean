@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_ROOT / "data"
@@ -26,8 +27,9 @@ REGION_BOUNDS = {
     "south": -11.0,
     "east": 141.0,
 }
-GRID_RESOLUTION_DEGREES = 0.5
-RISK_BUFFER_KM = 50
+GRID_RESOLUTION_KM = float(os.environ.get("GRID_RESOLUTION_KM", "50"))
+GRID_RESOLUTION_DEGREES = GRID_RESOLUTION_KM / 111.32
+RISK_BUFFER_KM = int(GRID_RESOLUTION_KM)
 RANDOM_SEED = 42
 
 RESERVOIR_SPECIES = [
