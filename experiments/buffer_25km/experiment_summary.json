@@ -1,0 +1,148 @@
+{
+  "risk_buffer_km": 25,
+  "grid_resolution_degrees": 0.5,
+  "n_grid_cells": 7920,
+  "n_positive": 17,
+  "positive_rate": 0.0021464646464646464,
+  "split_sizes": {
+    "train": 5544,
+    "validation": 1188,
+    "test": 1188
+  },
+  "split_positive": {
+    "train": 13,
+    "validation": 2,
+    "test": 2
+  },
+  "rf_training_metrics": {
+    "validation_auc_roc": 0.998735244519393,
+    "test_auc_roc": 1.0,
+    "test_f1_macro": 0.8997891185153943,
+    "test_average_precision": 1.0,
+    "randomized_search_best_params": {
+      "rf__n_estimators": 100,
+      "rf__min_samples_leaf": 1,
+      "rf__max_features": 0.3,
+      "rf__max_depth": 20
+    },
+    "controlled_n_estimators_candidates": [
+      100,
+      200,
+      300,
+      500
+    ],
+    "controlled_best_n_estimators": 100,
+    "best_params": {
+      "rf__n_estimators": 100,
+      "rf__max_depth": 20,
+      "rf__min_samples_leaf": 1,
+      "rf__max_features": 0.3
+    },
+    "split_sizes": {
+      "train": 5544,
+      "validation": 1188,
+      "test": 1188
+    }
+  },
+  "ensemble_weights": {
+    "formula": "P(C) = w * P(A) + (1 - w) * P(B)",
+    "w_model_a_rf": 0.6180384491178528,
+    "w_model_b_cnn": 0.3819615508821472,
+    "optimized_on": "validation split only",
+    "validation_metrics": {
+      "auc_roc": 0.998735244519393,
+      "f1_macro": 0.8329113924050633,
+      "average_precision": 0.5
+    },
+    "threshold": 0.5,
+    "risk_tiers": {
+      "low": "<0.3",
+      "medium": "0.3-0.6",
+      "high": ">0.6"
+    },
+    "split_sizes": {
+      "train": 5544,
+      "validation": 1188,
+      "test": 1188
+    }
+  },
+  "test_metrics": {
+    "model_a_random_forest": {
+      "auc_roc": 1.0,
+      "f1_macro": 0.8997891185153943,
+      "average_precision": 1.0,
+      "spearman_spatial_rho": 0.3040766917559644
+    },
+    "model_b_cnn": {
+      "backend": "tensorflow_resnet50",
+      "is_resnet50": true,
+      "metrics": {
+        "auc_roc": 0.5,
+        "f1_macro": 0.4995787700084246,
+        "average_precision": 0.0016835016835016834,
+        "spearman_spatial_rho": null
+      },
+      "note": "TensorFlow ResNet-50 patch model.",
+      "warning": null
+    },
+    "model_c_late_fusion": {
+      "auc_roc": 1.0,
+      "f1_macro": 1.0,
+      "average_precision": 1.0,
+      "spearman_spatial_rho": 0.3040766917559644
+    },
+    "loro_spatial_cv_by_asean_region": {
+      "java_borneo": {
+        "auc_roc": 1.0,
+        "f1_macro": 0.4990234375,
+        "average_precision": 1.0,
+        "spearman_spatial_rho": 0.28932691306506597
+      },
+      "mainland_mekong": {
+        "auc_roc": 0.9979633401221996,
+        "f1_macro": 0.8328246863343506,
+        "average_precision": 0.75,
+        "spearman_spatial_rho": 0.20590720866702336
+      },
+      "mainland_west": {
+        "auc_roc": 1.0,
+        "f1_macro": 0.4996637525218561,
+        "average_precision": 1.0,
+        "spearman_spatial_rho": 0.15527806146423323
+      },
+      "maritime_east": {
+        "note": "no_positive_labels_in_region",
+        "mean_predicted_risk": 0.0,
+        "n_cells": 207
+      },
+      "philippines_north": {
+        "auc_roc": 0.9435736677115988,
+        "f1_macro": 0.49899441340782125,
+        "average_precision": 0.7853666652506973,
+        "spearman_spatial_rho": 0.5142622670839181
+      },
+      "sulawesi_maluku_papua": {
+        "note": "no_positive_labels_in_region",
+        "mean_predicted_risk": 9.685230024213076e-05,
+        "n_cells": 1652
+      },
+      "sumatra_malay": {
+        "auc_roc": 0.9988636363636363,
+        "f1_macro": 0.4997160704145372,
+        "average_precision": 0.5,
+        "spearman_spatial_rho": 0.31713044239630567
+      }
+    },
+    "ablation": "Model A (RF) vs Model B (CNN) vs Model C (Ensemble late fusion)",
+    "evaluated_on": "held-out test split only",
+    "run_configuration": {
+      "grid_resolution_degrees": 0.5,
+      "risk_buffer_km": 25.0
+    },
+    "split_sizes": {
+      "train": 5544,
+      "validation": 1188,
+      "test": 1188
+    }
+  }
+}

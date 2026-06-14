@@ -1,0 +1,17 @@
+{
+  "grid_resolution_degrees": 0.5,
+  "risk_buffer_km": 25.0,
+  "n_grid_cells": 7920,
+  "n_positive": 17,
+  "n_negative": 7903,
+  "positive_rate": 0.0021464646464646464,
+  "region_counts": {
+    "java_borneo": 594,
+    "mainland_mekong": 580,
+    "mainland_west": 880,
+    "maritime_east": 242,
+    "philippines_north": 2646,
+    "sulawesi_maluku_papua": 1938,
+    "sumatra_malay": 1040
+  }
+}

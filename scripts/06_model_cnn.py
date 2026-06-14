@@ -59,6 +59,12 @@ def main() -> None:
         import tensorflow as tf
         from tensorflow.keras import layers, models
 
+        tf.keras.utils.set_random_seed(RANDOM_SEED)
+        try:
+            tf.config.experimental.enable_op_determinism()
+        except Exception:
+            pass
+
         x_train = make_raster_patches(train_df_smote)
         x_val = make_raster_patches(val_df)
         x_test = make_raster_patches(test_df)

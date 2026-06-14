@@ -26,7 +26,12 @@ def load_dataset() -> pd.DataFrame:
 
 
 def assign_asean_region(df: pd.DataFrame) -> pd.Series:
-    """Approximate ASEAN ecological/geographic regions from grid centroids."""
+    """Assign seven project-specific geographic groups from grid centroids.
+
+    These deterministic longitude/latitude partitions support region-aware
+    splitting and LORO validation. They are broad analytical groups, not
+    official administrative or biogeographic boundaries.
+    """
     lon = df["lon"].to_numpy()
     lat = df["lat"].to_numpy()
     region = np.full(len(df), "maritime_east", dtype=object)
@@ -51,7 +56,17 @@ def get_split_indices(df: pd.DataFrame, refresh: bool = False) -> dict[str, list
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
     split_path = MODEL_DIR / "split_indices.json"
     if split_path.exists() and not refresh:
-        return json.loads(split_path.read_text(encoding="utf-8"))
+        splits = json.loads(split_path.read_text(encoding="utf-8"))
+        expected = set(range(len(df)))
+        observed = {
+            int(idx)
+            for split_name in ("train", "validation", "test")
+            for idx in splits.get(split_name, [])
+        }
+        split_total = sum(len(splits.get(name, [])) for name in ("train", "validation", "test"))
+        if observed == expected and split_total == len(df):
+            return splits
+        print("Stored split_indices.json is incompatible with the current grid; regenerating it.")
 
     y = df["risk_label"].astype(int)
     strat = df["risk_label"].astype(str) + "_" + ensure_region_column(df)["asean_region"].astype(str)

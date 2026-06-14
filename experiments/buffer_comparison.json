@@ -1,0 +1,450 @@
+{
+  "selection_rule": "Highest validation F1-macro, with validation Average Precision as the tie-breaker. Test metrics are reported after selection and are not used to choose the buffer.",
+  "preferred_buffer_km": 50,
+  "experiments": [
+    {
+      "risk_buffer_km": 50,
+      "grid_resolution_degrees": 0.5,
+      "n_grid_cells": 7920,
+      "n_positive": 59,
+      "positive_rate": 0.00744949494949495,
+      "split_sizes": {
+        "train": 5544,
+        "validation": 1188,
+        "test": 1188
+      },
+      "split_positive": {
+        "train": 42,
+        "validation": 9,
+        "test": 8
+      },
+      "rf_training_metrics": {
+        "validation_auc_roc": 0.9021769861464517,
+        "test_auc_roc": 0.7815677966101694,
+        "test_f1_macro": 0.748730964467005,
+        "test_average_precision": 0.5016303554249982,
+        "randomized_search_best_params": {
+          "rf__n_estimators": 200,
+          "rf__min_samples_leaf": 1,
+          "rf__max_features": 0.3,
+          "rf__max_depth": null
+        },
+        "controlled_n_estimators_candidates": [
+          100,
+          200,
+          300,
+          500
+        ],
+        "controlled_best_n_estimators": 200,
+        "best_params": {
+          "rf__n_estimators": 200,
+          "rf__max_depth": null,
+          "rf__min_samples_leaf": 1,
+          "rf__max_features": 0.3
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      },
+      "ensemble_weights": {
+        "formula": "P(C) = w * P(A) + (1 - w) * P(B)",
+        "w_model_a_rf": 0.7582435664704784,
+        "w_model_b_cnn": 0.24175643352952159,
+        "optimized_on": "validation split only",
+        "validation_metrics": {
+          "auc_roc": 0.9021769861464517,
+          "f1_macro": 0.8562961170920527,
+          "average_precision": 0.6188158214848813
+        },
+        "threshold": 0.5,
+        "risk_tiers": {
+          "low": "<0.3",
+          "medium": "0.3-0.6",
+          "high": ">0.6"
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      },
+      "test_metrics": {
+        "model_a_random_forest": {
+          "auc_roc": 0.7815677966101694,
+          "f1_macro": 0.748730964467005,
+          "average_precision": 0.5016303554249982,
+          "spearman_spatial_rho": 0.08491964075391366
+        },
+        "model_b_cnn": {
+          "backend": "tensorflow_resnet50",
+          "is_resnet50": true,
+          "metrics": {
+            "auc_roc": 0.5,
+            "f1_macro": 0.4983108108108108,
+            "average_precision": 0.006734006734006734,
+            "spearman_spatial_rho": null
+          },
+          "note": "TensorFlow ResNet-50 patch model.",
+          "warning": null
+        },
+        "model_c_late_fusion": {
+          "auc_roc": 0.7815677966101694,
+          "f1_macro": 0.748730964467005,
+          "average_precision": 0.5016303554249982,
+          "spearman_spatial_rho": 0.08491964075391366
+        },
+        "loro_spatial_cv_by_asean_region": {
+          "java_borneo": {
+            "auc_roc": 0.8830708661417324,
+            "f1_macro": 0.7842422543109491,
+            "average_precision": 0.5086159844054581,
+            "spearman_spatial_rho": 0.24902440646342214
+          },
+          "mainland_mekong": {
+            "auc_roc": 0.6985507246376811,
+            "f1_macro": 0.7826278659611993,
+            "average_precision": 0.45265140538974213,
+            "spearman_spatial_rho": 0.10695980628620654
+          },
+          "mainland_west": {
+            "auc_roc": 0.7944822373393802,
+            "f1_macro": 0.7479674796747968,
+            "average_precision": 0.3622148217624384,
+            "spearman_spatial_rho": 0.12551675218582883
+          },
+          "maritime_east": {
+            "note": "no_positive_labels_in_region",
+            "mean_predicted_risk": 0.002028985507246377,
+            "n_cells": 207
+          },
+          "philippines_north": {
+            "auc_roc": 0.7671576509937608,
+            "f1_macro": 0.82134552277189,
+            "average_precision": 0.49398460627448376,
+            "spearman_spatial_rho": 0.11302692750339345
+          },
+          "sulawesi_maluku_papua": {
+            "note": "no_positive_labels_in_region",
+            "mean_predicted_risk": 0.0012772397094430994,
+            "n_cells": 1652
+          },
+          "sumatra_malay": {
+            "auc_roc": 0.6441904761904761,
+            "f1_macro": 0.7488597491448119,
+            "average_precision": 0.33787362845251606,
+            "spearman_spatial_rho": 0.09339147850963334
+          }
+        },
+        "ablation": "Model A (RF) vs Model B (CNN) vs Model C (Ensemble late fusion)",
+        "evaluated_on": "held-out test split only",
+        "run_configuration": {
+          "grid_resolution_degrees": 0.5,
+          "risk_buffer_km": 50.0
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      }
+    },
+    {
+      "risk_buffer_km": 25,
+      "grid_resolution_degrees": 0.5,
+      "n_grid_cells": 7920,
+      "n_positive": 17,
+      "positive_rate": 0.0021464646464646464,
+      "split_sizes": {
+        "train": 5544,
+        "validation": 1188,
+        "test": 1188
+      },
+      "split_positive": {
+        "train": 13,
+        "validation": 2,
+        "test": 2
+      },
+      "rf_training_metrics": {
+        "validation_auc_roc": 0.998735244519393,
+        "test_auc_roc": 1.0,
+        "test_f1_macro": 0.8997891185153943,
+        "test_average_precision": 1.0,
+        "randomized_search_best_params": {
+          "rf__n_estimators": 100,
+          "rf__min_samples_leaf": 1,
+          "rf__max_features": 0.3,
+          "rf__max_depth": 20
+        },
+        "controlled_n_estimators_candidates": [
+          100,
+          200,
+          300,
+          500
+        ],
+        "controlled_best_n_estimators": 100,
+        "best_params": {
+          "rf__n_estimators": 100,
+          "rf__max_depth": 20,
+          "rf__min_samples_leaf": 1,
+          "rf__max_features": 0.3
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      },
+      "ensemble_weights": {
+        "formula": "P(C) = w * P(A) + (1 - w) * P(B)",
+        "w_model_a_rf": 0.6180384491178528,
+        "w_model_b_cnn": 0.3819615508821472,
+        "optimized_on": "validation split only",
+        "validation_metrics": {
+          "auc_roc": 0.998735244519393,
+          "f1_macro": 0.8329113924050633,
+          "average_precision": 0.5
+        },
+        "threshold": 0.5,
+        "risk_tiers": {
+          "low": "<0.3",
+          "medium": "0.3-0.6",
+          "high": ">0.6"
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      },
+      "test_metrics": {
+        "model_a_random_forest": {
+          "auc_roc": 1.0,
+          "f1_macro": 0.8997891185153943,
+          "average_precision": 1.0,
+          "spearman_spatial_rho": 0.3040766917559644
+        },
+        "model_b_cnn": {
+          "backend": "tensorflow_resnet50",
+          "is_resnet50": true,
+          "metrics": {
+            "auc_roc": 0.5,
+            "f1_macro": 0.4995787700084246,
+            "average_precision": 0.0016835016835016834,
+            "spearman_spatial_rho": null
+          },
+          "note": "TensorFlow ResNet-50 patch model.",
+          "warning": null
+        },
+        "model_c_late_fusion": {
+          "auc_roc": 1.0,
+          "f1_macro": 1.0,
+          "average_precision": 1.0,
+          "spearman_spatial_rho": 0.3040766917559644
+        },
+        "loro_spatial_cv_by_asean_region": {
+          "java_borneo": {
+            "auc_roc": 1.0,
+            "f1_macro": 0.4990234375,
+            "average_precision": 1.0,
+            "spearman_spatial_rho": 0.28932691306506597
+          },
+          "mainland_mekong": {
+            "auc_roc": 0.9979633401221996,
+            "f1_macro": 0.8328246863343506,
+            "average_precision": 0.75,
+            "spearman_spatial_rho": 0.20590720866702336
+          },
+          "mainland_west": {
+            "auc_roc": 1.0,
+            "f1_macro": 0.4996637525218561,
+            "average_precision": 1.0,
+            "spearman_spatial_rho": 0.15527806146423323
+          },
+          "maritime_east": {
+            "note": "no_positive_labels_in_region",
+            "mean_predicted_risk": 0.0,
+            "n_cells": 207
+          },
+          "philippines_north": {
+            "auc_roc": 0.9435736677115988,
+            "f1_macro": 0.49899441340782125,
+            "average_precision": 0.7853666652506973,
+            "spearman_spatial_rho": 0.5142622670839181
+          },
+          "sulawesi_maluku_papua": {
+            "note": "no_positive_labels_in_region",
+            "mean_predicted_risk": 9.685230024213076e-05,
+            "n_cells": 1652
+          },
+          "sumatra_malay": {
+            "auc_roc": 0.9988636363636363,
+            "f1_macro": 0.4997160704145372,
+            "average_precision": 0.5,
+            "spearman_spatial_rho": 0.31713044239630567
+          }
+        },
+        "ablation": "Model A (RF) vs Model B (CNN) vs Model C (Ensemble late fusion)",
+        "evaluated_on": "held-out test split only",
+        "run_configuration": {
+          "grid_resolution_degrees": 0.5,
+          "risk_buffer_km": 25.0
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      }
+    },
+    {
+      "risk_buffer_km": 75,
+      "grid_resolution_degrees": 0.5,
+      "n_grid_cells": 7920,
+      "n_positive": 119,
+      "positive_rate": 0.015025252525252525,
+      "split_sizes": {
+        "train": 5544,
+        "validation": 1188,
+        "test": 1188
+      },
+      "split_positive": {
+        "train": 84,
+        "validation": 18,
+        "test": 17
+      },
+      "rf_training_metrics": {
+        "validation_auc_roc": 0.8520180436847102,
+        "test_auc_roc": 0.7980861003667051,
+        "test_f1_macro": 0.6563845172267121,
+        "test_average_precision": 0.2551767251825116,
+        "randomized_search_best_params": {
+          "rf__n_estimators": 200,
+          "rf__min_samples_leaf": 1,
+          "rf__max_features": 0.3,
+          "rf__max_depth": null
+        },
+        "controlled_n_estimators_candidates": [
+          100,
+          200,
+          300,
+          500
+        ],
+        "controlled_best_n_estimators": 500,
+        "best_params": {
+          "rf__n_estimators": 500,
+          "rf__max_depth": null,
+          "rf__min_samples_leaf": 1,
+          "rf__max_features": 0.3
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      },
+      "ensemble_weights": {
+        "formula": "P(C) = w * P(A) + (1 - w) * P(B)",
+        "w_model_a_rf": 0.7608717053680472,
+        "w_model_b_cnn": 0.23912829463195284,
+        "optimized_on": "validation split only",
+        "validation_metrics": {
+          "auc_roc": 0.8520417853751185,
+          "f1_macro": 0.7245133337401599,
+          "average_precision": 0.4231920117582896
+        },
+        "threshold": 0.5,
+        "risk_tiers": {
+          "low": "<0.3",
+          "medium": "0.3-0.6",
+          "high": ">0.6"
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      },
+      "test_metrics": {
+        "model_a_random_forest": {
+          "auc_roc": 0.7980861003667051,
+          "f1_macro": 0.6563845172267121,
+          "average_precision": 0.2551767251825116,
+          "spearman_spatial_rho": 0.12351541586765595
+        },
+        "model_b_cnn": {
+          "backend": "tensorflow_resnet50",
+          "is_resnet50": true,
+          "metrics": {
+            "auc_roc": 0.5004269854824936,
+            "f1_macro": 0.014107883817427386,
+            "average_precision": 0.014321819713563605,
+            "spearman_spatial_rho": 0.0034972014813511214
+          },
+          "note": "TensorFlow ResNet-50 patch model.",
+          "warning": null
+        },
+        "model_c_late_fusion": {
+          "auc_roc": 0.7980861003667051,
+          "f1_macro": 0.651557167235495,
+          "average_precision": 0.2551767251825116,
+          "spearman_spatial_rho": 0.12351541586765595
+        },
+        "loro_spatial_cv_by_asean_region": {
+          "java_borneo": {
+            "auc_roc": 0.730455755156354,
+            "f1_macro": 0.4940828402366864,
+            "average_precision": 0.3424694214167898,
+            "spearman_spatial_rho": 0.15689584421709551
+          },
+          "mainland_mekong": {
+            "auc_roc": 0.5033302497687326,
+            "f1_macro": 0.5690738813735692,
+            "average_precision": 0.24592478872362925,
+            "spearman_spatial_rho": 0.0025666225572686437
+          },
+          "mainland_west": {
+            "auc_roc": 0.6246565934065934,
+            "f1_macro": 0.4945652173913043,
+            "average_precision": 0.2191508698624448,
+            "spearman_spatial_rho": 0.06777708800466767
+          },
+          "maritime_east": {
+            "note": "no_positive_labels_in_region",
+            "mean_predicted_risk": 0.007632850241545895,
+            "n_cells": 207
+          },
+          "philippines_north": {
+            "auc_roc": 0.6349567099567099,
+            "f1_macro": 0.49527239981990095,
+            "average_precision": 0.2956226302149979,
+            "spearman_spatial_rho": 0.06944087621709134
+          },
+          "sulawesi_maluku_papua": {
+            "note": "no_positive_labels_in_region",
+            "mean_predicted_risk": 0.004346246973365617,
+            "n_cells": 1652
+          },
+          "sumatra_malay": {
+            "auc_roc": 0.8872961264016309,
+            "f1_macro": 0.597716894977169,
+            "average_precision": 0.4715054441501661,
+            "spearman_spatial_rho": 0.19189903611098877
+          }
+        },
+        "ablation": "Model A (RF) vs Model B (CNN) vs Model C (Ensemble late fusion)",
+        "evaluated_on": "held-out test split only",
+        "run_configuration": {
+          "grid_resolution_degrees": 0.5,
+          "risk_buffer_km": 75.0
+        },
+        "split_sizes": {
+          "train": 5544,
+          "validation": 1188,
+          "test": 1188
+        }
+      }
+    }
+  ]
+}

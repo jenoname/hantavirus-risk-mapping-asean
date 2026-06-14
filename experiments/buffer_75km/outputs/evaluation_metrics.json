@@ -1,0 +1,79 @@
+{
+  "model_a_random_forest": {
+    "auc_roc": 0.7980861003667051,
+    "f1_macro": 0.6563845172267121,
+    "average_precision": 0.2551767251825116,
+    "spearman_spatial_rho": 0.12351541586765595
+  },
+  "model_b_cnn": {
+    "backend": "tensorflow_resnet50",
+    "is_resnet50": true,
+    "metrics": {
+      "auc_roc": 0.5004269854824936,
+      "f1_macro": 0.014107883817427386,
+      "average_precision": 0.014321819713563605,
+      "spearman_spatial_rho": 0.0034972014813511214
+    },
+    "note": "TensorFlow ResNet-50 patch model.",
+    "warning": null
+  },
+  "model_c_late_fusion": {
+    "auc_roc": 0.7980861003667051,
+    "f1_macro": 0.651557167235495,
+    "average_precision": 0.2551767251825116,
+    "spearman_spatial_rho": 0.12351541586765595
+  },
+  "loro_spatial_cv_by_asean_region": {
+    "java_borneo": {
+      "auc_roc": 0.730455755156354,
+      "f1_macro": 0.4940828402366864,
+      "average_precision": 0.3424694214167898,
+      "spearman_spatial_rho": 0.15689584421709551
+    },
+    "mainland_mekong": {
+      "auc_roc": 0.5033302497687326,
+      "f1_macro": 0.5690738813735692,
+      "average_precision": 0.24592478872362925,
+      "spearman_spatial_rho": 0.0025666225572686437
+    },
+    "mainland_west": {
+      "auc_roc": 0.6246565934065934,
+      "f1_macro": 0.4945652173913043,
+      "average_precision": 0.2191508698624448,
+      "spearman_spatial_rho": 0.06777708800466767
+    },
+    "maritime_east": {
+      "note": "no_positive_labels_in_region",
+      "mean_predicted_risk": 0.007632850241545895,
+      "n_cells": 207
+    },
+    "philippines_north": {
+      "auc_roc": 0.6349567099567099,
+      "f1_macro": 0.49527239981990095,
+      "average_precision": 0.2956226302149979,
+      "spearman_spatial_rho": 0.06944087621709134
+    },
+    "sulawesi_maluku_papua": {
+      "note": "no_positive_labels_in_region",
+      "mean_predicted_risk": 0.004346246973365617,
+      "n_cells": 1652
+    },
+    "sumatra_malay": {
+      "auc_roc": 0.8872961264016309,
+      "f1_macro": 0.597716894977169,
+      "average_precision": 0.4715054441501661,
+      "spearman_spatial_rho": 0.19189903611098877
+    }
+  },
+  "ablation": "Model A (RF) vs Model B (CNN) vs Model C (Ensemble late fusion)",
+  "evaluated_on": "held-out test split only",
+  "run_configuration": {
+    "grid_resolution_degrees": 0.5,
+    "risk_buffer_km": 75.0
+  },
+  "split_sizes": {
+    "train": 5544,
+    "validation": 1188,
+    "test": 1188
+  }
+}

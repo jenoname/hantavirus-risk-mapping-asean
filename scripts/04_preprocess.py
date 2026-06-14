@@ -426,7 +426,8 @@ def main() -> None:
         dataset[["presence_count", "species_richness"]].fillna(0)
     )
 
-    # Risk label — 50 km buffer 
+    # Risk label based on the configured distance buffer. Grid resolution
+    # remains fixed so 25/50/75 km sensitivity runs change only the label rule.
     tree = cKDTree(haversine_proj(
         gbif["decimalLongitude"].to_numpy(),
         gbif["decimalLatitude"].to_numpy(),
@@ -488,10 +489,23 @@ def main() -> None:
         dataset.to_csv(out_csv, index=False)
         print(f"Parquet unavailable ({exc}); wrote {out_csv} — shape {dataset.shape}")
 
-
-    split_path = MODEL_DIR / "split_indices.json"
-    if split_path.exists():
-        split_path.unlink()
+    metadata = {
+        "grid_resolution_degrees": GRID_RESOLUTION_DEGREES,
+        "risk_buffer_km": RISK_BUFFER_KM,
+        "n_grid_cells": int(len(dataset)),
+        "n_positive": n1,
+        "n_negative": n0,
+        "positive_rate": float(n1 / len(dataset)),
+        "region_counts": {
+            str(key): int(value)
+            for key, value in dataset["asean_region"].value_counts().sort_index().items()
+        },
+    }
+    (PROCESSED_DIR / "dataset_metadata.json").write_text(
+        json.dumps(metadata, indent=2),
+        encoding="utf-8",
+    )
+    print(f"Wrote {PROCESSED_DIR / 'dataset_metadata.json'}")
 
 
 if __name__ == "__main__":

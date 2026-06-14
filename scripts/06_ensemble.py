@@ -8,7 +8,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 import joblib
 from scipy.optimize import minimize_scalar
-from sklearn.metrics import f1_score
+from sklearn.metrics import average_precision_score, f1_score, roc_auc_score
 
 from config import MODEL_DIR, OUTPUT_DIR, ensure_directories
 from scripts.common import load_dataset, split_frame
@@ -31,6 +31,7 @@ def main() -> None:
 
     result = minimize_scalar(objective, bounds=(0, 1), method="bounded")
     w = float(result.x)
+    p_val = w * p_a_val + (1 - w) * p_b_val
     p_a = rf["model"].predict_proba(df[rf["features"]])[:, 1]
     p_b = predict_patch_model(cnn, df)
     proba = w * p_a + (1 - w) * p_b
@@ -39,6 +40,11 @@ def main() -> None:
         "w_model_a_rf": w,
         "w_model_b_cnn": 1 - w,
         "optimized_on": "validation split only",
+        "validation_metrics": {
+            "auc_roc": float(roc_auc_score(y_val, p_val)),
+            "f1_macro": float(f1_score(y_val, (p_val >= 0.5).astype(int), average="macro")),
+            "average_precision": float(average_precision_score(y_val, p_val)),
+        },
         "threshold": 0.5,
         "risk_tiers": {"low": "<0.3", "medium": "0.3-0.6", "high": ">0.6"},
         "split_sizes": {name: len(idx) for name, idx in splits.items()},

@@ -1,27 +1,27 @@
 {
   "model_a_random_forest": {
-    "auc_roc": 0.7864936440677966,
-    "f1_macro": 0.7716701902748414,
-    "average_precision": 0.47609821740256525,
-    "spearman_spatial_rho": 0.0862869172262021
+    "auc_roc": 0.7815677966101694,
+    "f1_macro": 0.748730964467005,
+    "average_precision": 0.5016303554249982,
+    "spearman_spatial_rho": 0.08491964075391366
   },
   "model_b_cnn": {
     "backend": "tensorflow_resnet50",
     "is_resnet50": true,
     "metrics": {
-      "auc_roc": 0.5194915254237289,
+      "auc_roc": 0.5,
       "f1_macro": 0.4983108108108108,
-      "average_precision": 0.008156010015188956,
-      "spearman_spatial_rho": 0.0055221241947643164
+      "average_precision": 0.006734006734006734,
+      "spearman_spatial_rho": null
     },
     "note": "TensorFlow ResNet-50 patch model.",
     "warning": null
   },
   "model_c_late_fusion": {
-    "auc_roc": 0.8135593220338984,
-    "f1_macro": 0.7716701902748414,
-    "average_precision": 0.4782618030735219,
-    "spearman_spatial_rho": 0.0888346934974407
+    "auc_roc": 0.7815677966101694,
+    "f1_macro": 0.748730964467005,
+    "average_precision": 0.5016303554249982,
+    "spearman_spatial_rho": 0.08491964075391366
   },
   "loro_spatial_cv_by_asean_region": {
     "java_borneo": {
@@ -67,6 +67,10 @@
   },
   "ablation": "Model A (RF) vs Model B (CNN) vs Model C (Ensemble late fusion)",
   "evaluated_on": "held-out test split only",
+  "run_configuration": {
+    "grid_resolution_degrees": 0.5,
+    "risk_buffer_km": 50.0
+  },
   "split_sizes": {
     "train": 5544,
     "validation": 1188,

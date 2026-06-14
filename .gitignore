@@ -4,6 +4,7 @@ __pycache__/
 *.pyo
 
 models/model_cnn_resnet50.keras
+experiments/**/models/model_cnn_resnet50.keras
 
 data/raw/chirps/
 data/raw_light/gmted2010/

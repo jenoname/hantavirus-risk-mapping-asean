@@ -15,7 +15,15 @@ from sklearn.metrics import average_precision_score, f1_score, roc_auc_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from config import FEATURE_COLUMNS, MODEL_DIR, OUTPUT_DIR, RANDOM_SEED, ensure_directories
+from config import (
+    FEATURE_COLUMNS,
+    GRID_RESOLUTION_DEGREES,
+    MODEL_DIR,
+    OUTPUT_DIR,
+    RANDOM_SEED,
+    RISK_BUFFER_KM,
+    ensure_directories,
+)
 from scripts.common import ensure_region_column, load_dataset, split_frame
 from scripts.patch_model import predict_patch_model
 
@@ -102,6 +110,10 @@ def main() -> None:
         "loro_spatial_cv_by_asean_region": loro_results,
         "ablation": "Model A (RF) vs Model B (CNN) vs Model C (Ensemble late fusion)",
         "evaluated_on": "held-out test split only",
+        "run_configuration": {
+            "grid_resolution_degrees": GRID_RESOLUTION_DEGREES,
+            "risk_buffer_km": RISK_BUFFER_KM,
+        },
         "split_sizes": {name: len(idx) for name, idx in splits.items()},
     }
     out = OUTPUT_DIR / "evaluation_metrics.json"

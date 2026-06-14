@@ -1,0 +1,22 @@
+{
+  "formula": "P(C) = w * P(A) + (1 - w) * P(B)",
+  "w_model_a_rf": 0.7608717053680472,
+  "w_model_b_cnn": 0.23912829463195284,
+  "optimized_on": "validation split only",
+  "validation_metrics": {
+    "auc_roc": 0.8520417853751185,
+    "f1_macro": 0.7245133337401599,
+    "average_precision": 0.4231920117582896
+  },
+  "threshold": 0.5,
+  "risk_tiers": {
+    "low": "<0.3",
+    "medium": "0.3-0.6",
+    "high": ">0.6"
+  },
+  "split_sizes": {
+    "train": 5544,
+    "validation": 1188,
+    "test": 1188
+  }
+}
